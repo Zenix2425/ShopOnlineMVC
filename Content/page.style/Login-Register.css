@@ -1,0 +1,123 @@
+﻿.auth-container {
+    max-width: 420px;
+    margin: 80px auto;
+    padding: 40px 45px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+    .auth-container:hover {
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .auth-container h2 {
+        font-size: 26px;
+        font-weight: 600;
+        color: #222;
+        margin-bottom: 28px;
+        text-align: center;
+        letter-spacing: 0.4px;
+    }
+
+    /* Form canh trái */
+    .auth-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        text-align: left;
+    }
+
+    .auth-container label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        text-align: left; /* đảm bảo label nằm trái */
+    }
+
+    .auth-container input[type="text"],
+    .auth-container input[type="email"],
+    .auth-container input[type="password"] {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid #dcdcdc;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .auth-container input:focus {
+        border-color: #963424;
+        box-shadow: 0 0 6px rgba(150, 52, 36, 0.25);
+    }
+
+    .auth-container button {
+        background-color: #963424;
+        color: #fff;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+        align-self: flex-start; /* nút cũng canh trái */
+    }
+
+        .auth-container button:hover {
+            background-color: #7c2a1f;
+            transform: translateY(-2px);
+        }
+
+    .auth-container p {
+        font-size: 14px;
+        color: #444;
+        margin-top: 18px;
+        text-align: left;
+    }
+
+    .auth-container a {
+        color: #963424;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .auth-container a:hover {
+            color: #7c2a1f;
+            text-decoration: underline;
+        }
+
+
+        .button {
+            display:flex;
+            justify-content:center;
+            margin-top:10px;
+        }
+/* thông báo lỗi */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .auth-container {
+        margin: 60px 20px;
+        padding: 28px 25px;
+    }
+
+        .auth-container h2 {
+            font-size: 22px;
+        }
+
+        .auth-container button {
+            font-size: 15px;
+            padding: 10px 22px;
+        }
+}

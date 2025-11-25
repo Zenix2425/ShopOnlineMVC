@@ -1,0 +1,41 @@
+@model ShopOnline.Models.Customer
+
+@{
+    ViewBag.Title = "Chi tiết khách hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2>Chi tiết khách hàng</h2>
+    <hr />
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>ID</dt>
+                <dd>@Model.IDCus</dd>
+
+                <dt>Tên khách hàng</dt>
+                <dd>@Model.NameCus</dd>
+
+                <dt>Số điện thoại</dt>
+                <dd>@Model.PhoneCus</dd>
+
+                <dt>Email</dt>
+                <dd>@Model.EmailCus</dd>
+
+                <dt>Số đơn hàng</dt>
+                <dd>@(Model.OrderProes != null ? Model.OrderProes.Count : 0)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <p>
+        <a href="@Url.Action("Edit", new { id = Model.IDCus })" class="btn btn-warning">
+            <span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
+        </a>
+        <a href="@Url.Action("Index")" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left"></span> Quay lại danh sách
+        </a>
+    </p>
+</div>

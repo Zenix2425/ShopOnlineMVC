@@ -1,0 +1,31 @@
+﻿@model ShopOnline.Models.Customer
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="auth-container">
+    <h2>Đăng nhập</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <p class="error">@ViewBag.Error</p>
+    }
+
+    @using (Html.BeginForm("Login", "User"))
+    {
+
+        <label>Email đăng nhập</label>
+        <input type="email" name="EmailCus" placeholder="Email đăng nhập" required />
+
+        <label>Mật khẩu</label>
+        <input type="password" name="PasswordUser" placeholder="Nhập mật khẩu" required />
+        <div class="button">
+            <button type="submit">Đăng nhập</button>
+        </div>
+            }
+
+    <p>Chưa có tài khoản? <a href="@Url.Action("Register","User")">Đăng ký ngay</a></p>
+</div>

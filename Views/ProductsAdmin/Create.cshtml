@@ -1,0 +1,111 @@
+@model ShopOnline.Models.Product
+
+@{
+    ViewBag.Title = "Thêm sản phẩm mới";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2>Thêm sản phẩm mới</h2>
+    <hr />
+
+    @using (Html.BeginForm("Create", "ProductsAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NamePro, "Tên sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NamePro, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DecriptionPro, "Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.DecriptionPro, new { @class = "form-control", rows = 4 })
+                    @Html.ValidationMessageFor(model => model.DecriptionPro, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IDCate, "Danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("IDCate", (SelectList)ViewBag.IDCate, "-- Chọn danh mục --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDCate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, "Giá", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", type = "number", step = "1000" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Stock, "Số lượng tồn kho", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0" } })
+                    @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AvailableSizes, "Kích cỡ có sẵn", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AvailableSizes, new { htmlAttributes = new { @class = "form-control", placeholder = "VD: S, M, L, XL" } })
+                    @Html.ValidationMessageFor(model => model.AvailableSizes, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hình ảnh chính</label>
+                <div class="col-md-10">
+                    <input type="file" name="file" class="form-control" accept="image/*" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hình thu nhỏ 1</label>
+                <div class="col-md-10">
+                    <input type="file" name="fileThumb1" class="form-control" accept="image/*" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hình thu nhỏ 2</label>
+                <div class="col-md-10">
+                    <input type="file" name="fileThumb2" class="form-control" accept="image/*" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hình thu nhỏ 3</label>
+                <div class="col-md-10">
+                    <input type="file" name="fileThumb3" class="form-control" accept="image/*" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-floppy-disk"></span> Lưu
+                    </button>
+                    <a href="@Url.Action("Index")" class="btn btn-default">
+                        <span class="glyphicon glyphicon-arrow-left"></span> Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

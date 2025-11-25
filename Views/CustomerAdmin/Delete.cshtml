@@ -1,0 +1,41 @@
+@model ShopOnline.Models.Customer
+
+@{
+    ViewBag.Title = "Xóa khách hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2>Xóa khách hàng</h2>
+    <hr />
+
+    <h3 class="text-danger">Bạn có chắc chắn muốn xóa khách hàng này?</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Tên khách hàng</dt>
+                <dd>@Model.NameCus</dd>
+
+                <dt>Số điện thoại</dt>
+                <dd>@Model.PhoneCus</dd>
+
+                <dt>Email</dt>
+                <dd>@Model.EmailCus</dd>
+            </dl>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Delete", "CustomerAdmin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.IDCus)
+
+        <button type="submit" class="btn btn-danger">
+            <span class="glyphicon glyphicon-trash"></span> Xác nhận xóa
+        </button>
+        <a href="@Url.Action("Index")" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left"></span> Hủy
+        </a>
+    }
+</div>

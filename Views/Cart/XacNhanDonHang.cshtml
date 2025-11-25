@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Xác nhận đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/page.style/Cart/XacNhanDonHang.css" rel="stylesheet" />
+
+<form method="post" action="@Url.Action("CheckOut", "Cart")">
+    <div class="xacnhandonhang">
+        <h2>Xác nhận đơn hàng của bạn</h2>
+
+        <table class="xacnhandonhang-table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                    var cart = Session["Cart"] as ShopOnline.Models.Cart;
+                    if (cart != null)
+                    {
+                        foreach (var item in cart.Items)
+                        {
+                            <tr>
+                                <td>@(i++)</td>
+                                <td>
+                                    <img src="@Url.Content("~/pictures/tshirt/" + item._product.ImagePro)"
+                                         alt="@item._product.NamePro" />
+                                    @item._product.NamePro
+                                </td>
+                                <td>@item._quantity</td>
+                                <td>@((item._product.Price.Value * item._quantity).ToString("#,##0").Replace(',', '.')) ₫</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+
+        <div class="xacnhandonhang-thongtin">
+            <!-- THÔNG TIN KHÁCH HÀNG -->
+            <div class="xacnhandonhang-khachhang">
+                <label class="xacnhandonhang-label">Tên khách hàng: <span>@Model.NameCus</span></label>
+                <label class="xacnhandonhang-label">Số điện thoại: <span>@Model.PhoneCus</span></label>
+
+                <label class="xacnhandonhang-label">Địa chỉ giao hàng</label>
+                <textarea class="xacnhandonhang-textarea"
+                          id="AddressDeliverry"
+                          name="AddressDeliverry"
+                          placeholder="Nhập địa chỉ ..."
+                          required></textarea>
+
+                <input type="hidden" name="IDCus" value="@Model.IDCus" />
+            </div>
+
+            <!-- TỔNG TIỀN -->
+            <div class="xacnhandonhang-summary">
+                <p><b>Tổng phụ:</b> @cart.Total_money().ToString("#,##0").Replace(',', '.') đ</p>
+                <p><b>Phí vận chuyển:</b> 0 đ</p>
+                <p><b>Khuyến mãi:</b> 0 đ</p>
+
+                <p>
+                    <b>Tổng tiền:</b>
+                    <span class="xacnhandonhang-total">
+                        @cart.Total_money().ToString("#,##0").Replace(',', '.') đ
+                    </span>
+                </p>
+
+                <div class="xacnhandonhang-actions">
+                    <button type="submit" class="nutthanhtoan">Thanh Toán</button>
+                    <a href="@Url.Action("HienThiCart","Cart")" class="nuthuy">Hủy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

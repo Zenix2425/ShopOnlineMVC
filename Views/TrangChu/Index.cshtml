@@ -1,0 +1,140 @@
+﻿@model IEnumerable<ShopOnline.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="container">
+        <section id="home_page">
+            <!-- Hình 1 -->
+            <a href="@Url.Action("Shop", "TrangChu")#hero">
+                <img src="@Url.Content("~/pictures/PictureHome/background.jpg")" />
+            </a>
+            <section id="hero">
+                <h1>BLACK FRIDAY</h1>
+                <hr />
+            </section>
+            <!-- Product -->
+
+            <section id="product1">
+                <div class="pro-container">
+                    @foreach (var item in Model)
+                    {
+                        <div class="pro">
+                            <a href="@Url.Action("DetailShop", "Detail", new { id = item.ProductID })">
+                                <img src="@Url.Content("~/pictures/tshirt/" + item.ImagePro)" alt="@item.NamePro" />
+                            </a>
+                            <div class="des">
+                                <h5>@item.NamePro</h5>
+                                <h4>@String.Format("{0:N0}₫", item.Price)</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Hình 2 -->
+            <a href="@Url.Action("Shop", "TrangChu")#hero">
+                <img src="@Url.Content("~/pictures/PictureHome/background1.jpg")" />
+            </a>
+            <section id="hero">
+                <h1>NEW ARRIVALS</h1>
+                <hr />
+            </section>
+            <section id="product1">
+                <div class="pro-container">
+                    @foreach (var item in Model)
+                    {
+                        <div class="pro">
+                            <a href="@Url.Action("DetailShop", "Detail", new { id = item.ProductID })">
+                                <img src="@Url.Content("~/pictures/tshirt/" + item.ImagePro)" alt="@item.NamePro" />
+                            </a>
+                            <div class="des">
+                                <h5>@item.NamePro</h5>
+                                <h4>@String.Format("{0:N0}₫", item.Price)</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Hình 3 -->
+            <a href="@Url.Action("Shop", "TrangChu")#hero">
+                <img src="@Url.Content("~/pictures/PictureHome/background2.jpg")" />
+            </a>
+            <section id="hero">
+                <h1>BESTSELLERS</h1>
+                <hr />
+            </section>
+            <section id="product1">
+                <div class="pro-container">
+                    @foreach (var item in Model)
+                    {
+                        <div class="pro">
+                            <a href="@Url.Action("DetailShop", "Detail", new { id = item.ProductID })">
+                                <img src="@Url.Content("~/pictures/tshirt/" + item.ImagePro)" alt="@item.NamePro" />
+                            </a>
+                            <div class="des">
+                                <h5>@item.NamePro</h5>
+                                <h4>@String.Format("{0:N0}₫", item.Price)</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Hình 4 -->
+            <a href="@Url.Action("Shop", "TrangChu")#hero">
+                <img src="@Url.Content("~/pictures/PictureHome/background3.jpg")" />
+            </a>
+            <section id="hero">
+                <h1>SEASONAL COLLECTIONS</h1>
+                <hr />
+            </section>
+            <section id="product1">
+                <div class="pro-container">
+                    @foreach (var item in Model)
+                    {
+                        <div class="pro">
+                            <a href="@Url.Action("DetailShop", "Detail", new { id = item.ProductID })">
+                                <img src="@Url.Content("~/pictures/tshirt/" + item.ImagePro)" alt="@item.NamePro" />
+                            </a>
+                            <div class="des">
+                                <h5>@item.NamePro</h5>
+                                <h4>@String.Format("{0:N0}₫", item.Price)</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Hình 5 -->
+            <a href="@Url.Action("Shop", "TrangChu")#hero">
+                <img src="@Url.Content("~/pictures/PictureHome/background4.jpg")" />
+            </a>
+            <section id="hero">
+                <h1>LIMITED EDITION</h1>
+                <hr />
+            </section>
+            <section id="product1">
+                <div class="pro-container">
+                    @foreach (var item in Model)
+                    {
+                        <div class="pro">
+                            <a href="@Url.Action("DetailShop", "Detail", new { id = item.ProductID })">
+                                <img src="@Url.Content("~/pictures/tshirt/" + item.ImagePro)" alt="@item.NamePro" />
+                            </a>
+                            <div class="des">
+                                <h5>@item.NamePro</h5>
+                                <h4>@String.Format("{0:N0}₫", item.Price)</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+        </section>
+    </div>
+</div>

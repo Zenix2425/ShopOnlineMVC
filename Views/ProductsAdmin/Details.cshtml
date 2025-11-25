@@ -1,0 +1,91 @@
+@model ShopOnline.Models.Product
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2>Chi tiết sản phẩm</h2>
+    <hr />
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (!string.IsNullOrEmpty(Model.ImagePro))
+                    {
+                        <img src="~/pictures/@Model.ImagePro" alt="@Model.NamePro" class="img-thumbnail" style="width: 100%;" />
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">Chưa có hình ảnh</div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.ImageThumb1) || !string.IsNullOrEmpty(Model.ImageThumb2) || !string.IsNullOrEmpty(Model.ImageThumb3))
+                    {
+                        <div style="margin-top: 15px;">
+                            <strong>Hình thu nhỏ:</strong>
+                            <div class="row" style="margin-top: 10px;">
+                                @if (!string.IsNullOrEmpty(Model.ImageThumb1))
+                                {
+                                    <div class="col-xs-4">
+                                        <img src="~/pictures/@Model.ImageThumb1" alt="Thumb 1" class="img-thumbnail" style="width: 100%;" />
+                                    </div>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.ImageThumb2))
+                                {
+                                    <div class="col-xs-4">
+                                        <img src="~/pictures/@Model.ImageThumb2" alt="Thumb 2" class="img-thumbnail" style="width: 100%;" />
+                                    </div>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.ImageThumb3))
+                                {
+                                    <div class="col-xs-4">
+                                        <img src="~/pictures/@Model.ImageThumb3" alt="Thumb 3" class="img-thumbnail" style="width: 100%;" />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-8">
+                    <dl class="dl-horizontal">
+                        <dt>ID</dt>
+                        <dd>@Model.ProductID</dd>
+
+                        <dt>Tên sản phẩm</dt>
+                        <dd>@Model.NamePro</dd>
+
+                        <dt>Mô tả</dt>
+                        <dd>@Model.DecriptionPro</dd>
+
+                        <dt>Mã danh mục</dt>
+                        <dd>@Model.IDCate</dd>
+
+                        <dt>Tên danh mục</dt>
+                        <dd>@(Model.Category != null ? Model.Category.NameCate : "N/A")</dd>
+
+                        <dt>Giá</dt>
+                        <dd>@(Model.Price.HasValue ? Model.Price.Value.ToString("N0") + " VNĐ" : "N/A")</dd>
+
+                        <dt>Số lượng tồn kho</dt>
+                        <dd>@Model.Stock</dd>
+
+                        <dt>Kích cỡ có sẵn</dt>
+                        <dd>@(string.IsNullOrEmpty(Model.AvailableSizes) ? "N/A" : Model.AvailableSizes)</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        <a href="@Url.Action("Edit", new { id = Model.ProductID })" class="btn btn-warning">
+            <span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
+        </a>
+        <a href="@Url.Action("Index")" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left"></span> Quay lại danh sách
+        </a>
+    </p>
+</div>

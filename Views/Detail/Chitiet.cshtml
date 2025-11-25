@@ -1,0 +1,123 @@
+﻿@model ShopOnline.Models.OrderPro
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/page.style/chitiet.css" rel="stylesheet" />
+
+
+<div class="container">
+    <h2>Chi tiết đơn hàng #@Model.ID</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Thông tin đơn hàng</h3>
+                </div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Mã đơn hàng</dt>
+                        <dd>@Model.ID</dd>
+
+                        <dt>Ngày đặt</dt>
+                        <dd>@(Model.DateOrder.HasValue ? Model.DateOrder.Value.ToString("dd/MM/yyyy HH:mm") : "N/A")</dd>
+
+                        <dt>Địa chỉ giao hàng</dt>
+                        <dd>@Model.AddressDeliverry</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Thông tin khách hàng</h3>
+                </div>
+                <div class="panel-body">
+                    @if (Model.Customer != null)
+                    {
+                        <dl class="dl-horizontal">
+                            <dt>Tên khách hàng</dt>
+                            <dd>@Model.Customer.NameCus</dd>
+
+                            <dt>Số điện thoại</dt>
+                            <dd>@Model.Customer.PhoneCus</dd>
+
+                            <dt>Email</dt>
+                            <dd>@Model.Customer.EmailCus</dd>
+                        </dl>
+                    }
+                    else
+                    {
+                        <p class="text-muted">Không có thông tin khách hàng</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Chi tiết sản phẩm</h3>
+        </div>
+        <div class="panel-body">
+            @if (Model.OrderDetails != null && Model.OrderDetails.Any())
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var detail in Model.OrderDetails)
+                        {
+                            <tr>
+                                <td>@(detail.Product != null ? detail.Product.NamePro : "N/A")</td>
+                                <td>@(detail.Quantity.HasValue ? detail.Quantity.Value.ToString() : "0")</td>
+                                <td>@(detail.UnitPrice.HasValue ? detail.UnitPrice.Value.ToString("N0") + " VNĐ" : "0 VNĐ")</td>
+                                <td>
+                                    @if (detail.Quantity.HasValue && detail.UnitPrice.HasValue)
+                                    {
+                                        @((detail.Quantity.Value * (decimal)detail.UnitPrice.Value).ToString("N0")) <text> VNĐ</text>
+                                    }
+                                    else
+                                    {
+                                        <text>0 VNĐ</text>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr class="success">
+                            <td colspan="3" class="text-right"><strong>Tổng cộng:</strong></td>
+                            <td><strong>@ViewBag.TotalAmount.ToString("N0") VNĐ</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            }
+            else
+            {
+                <p class="text-muted">Không có sản phẩm trong đơn hàng</p>
+            }
+        </div>
+    </div>
+
+    <div class="DonHangCuaBan-button">
+        <a href="@Url.Action("DonHangCuaBan","Cart")" class=" btn-DonHangCuaBan">
+            <span class="glyphicon glyphicon-arrow-left"></span> Quay lại Đơn Hàng Của Bạn
+        </a>
+    </div>
+        
+       
+    
+</div>
+
+

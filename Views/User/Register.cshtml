@@ -1,0 +1,46 @@
+﻿@model ShopOnline.Models.Customer
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/page.style/Login-Register.css" rel="stylesheet" />
+
+<div class="auth-container">
+    <h2>Tạo tài khoản mới</h2>
+
+
+
+    @using (Html.BeginForm("Register", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <label>Tên đăng nhập</label>
+        @Html.TextBoxFor(m => m.NameCus, new { placeholder = "Nhập tên đăng nhập", required = "required" })
+
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.EmailCus, new { type = "email", placeholder = "Nhập email của bạn", required = "required" })
+
+        <label>Số điện thoại</label>
+        @Html.TextBoxFor(m => m.PhoneCus, new { placeholder = "Nhập số điện thoại", required = "required" })
+
+        <label>Mật khẩu</label>
+        @Html.PasswordFor(m => m.PasswordUser, new { placeholder = "Nhập mật khẩu", required = "required" })
+
+        <label>Nhập lại mật khẩu</label>
+        <input type="password" name="rePassword" placeholder="Nhập lại mật khẩu" required />
+        <div class="button">
+            <button type="submit">Đăng ký</button>
+        </div>
+            }
+    @if (ViewBag.Notification != null)
+    {
+        <p class="error" style="red">@ViewBag.Notification</p>
+    }
+    @if (ViewBag.NotificationEmail != null)
+    {
+        <p class="error" style="color:red">@ViewBag.NotificationEmail </p>
+    }
+
+    <p>Đã có tài khoản? <a href="@Url.Action("Login","User")">Đăng nhập ngay</a></p>
+</div>

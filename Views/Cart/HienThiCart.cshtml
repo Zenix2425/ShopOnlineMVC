@@ -1,0 +1,104 @@
+﻿
+@model ShopOnline.Models.Cart
+@{
+    ViewBag.Title = "HienThiGioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/page.style/Cart/Cart.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<h2>Giỏ hàng</h2>
+@if (TempData["CartError"] != null)
+ {
+    <div class="hopthoai-thongbao">
+        <div class="popup-tinnhan">
+            <p>@TempData["CartError"]</p>
+            <a href="@Url.Action("HienThiCart", "Cart")" class="popup-dong">Đóng</a>
+        </div>
+    </div>
+ }
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        @Html.Action("TongSanPhamCart", "Cart")
+    </li>
+</ul>
+
+
+@if (Model != null)
+ {
+    <div class="cart-container">
+        <div class="cart-left">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        decimal total = item._quantity * (decimal)item._product.Price.Value;
+                        <tr>
+                            <td class="cart-product">
+
+                                <img src="@Url.Content("~/pictures/tshirt/" + @item._product.ImagePro)" alt="@item._product.ImagePro" />
+
+                                <div class="product-info">
+                                    <h4>@item._product.NamePro</h4>
+
+                                </div>
+                            </td>
+                            <td>
+                                <p class="price">@item._product.Price.Value.ToString("#,##0").Replace(',', '.') ₫</p>
+                            </td>
+                            <td class="cart-quantity">
+                                @using (Html.BeginForm("Update_Cart_Quantity", "Cart"))
+                                {
+                                    <input type="hidden" name="idPro" value="@item._product.ProductID" />
+                                    <input type="number" value="@item._quantity" name="carQuantity" min="1" />
+                                    <input type="submit" value="Cập nhật" class="update-btn" />
+                                }
+                            </td>
+                            <td class="cart-total">@total.ToString("#,##0").Replace(',', '.') ₫</td>
+
+                            <td>
+                                <a href="/Cart/RemoveCart/@item._product.ProductID" class="btn-danger"> <i class="fa-duotone fa-solid fa-delete-left"></i> </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="cart-right">
+            <div class="cart-summary">
+                <h3>Thông tin</h3>
+                <div class="summary-line">
+                    <span>Tạm tính</span>
+                    <span>@Model.Total_money().ToString("#,##0").Replace(',', '.') ₫</span>
+                </div>
+                <div class="summary-line">
+                    <span>Chưa bao gồm phí vận chuyển</span>
+                </div>
+                <div class="summary-total">
+                    <span>Tổng tiền</span>
+                    <span>@Model.Total_money().ToString("#,##0").Replace(',', '.') ₫</span>
+                </div>
+                <a href="@Url.Action("XacNhanDonHang","Cart")" class="btn-checkout">Xác nhận đơn hàng</a>
+                <a href="@Url.Action("Shop", "TrangChu")" class="btn-continue">TIẾP TỤC MUA HÀNG</a>
+            </div>
+        </div>
+    </div>
+ }
+else
+{
+
+    <a href="@Url.Action("Shop", "TrangChu")" class="btn-continue"> Tiếp tục Mua hàng</a>
+    <a href="@Url.Action("DonHangCuaBan", "Cart")" class="btn-danhsach"> Đơn hàng của bạn</a>
+    <br />
+    <h4>Giỏ hàng rỗng ! Xin mời tiếp tục mua hàng</h4>
+}

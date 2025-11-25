@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!--Shop-->
+    <link href="~/Content/page.style/Shop-StyleSheet.css" rel="stylesheet" />
+    <!--Home-->
+    <link href="~/Content/page.style/home-StyleSheet.css" rel="stylesheet" />
+    <!--User-->
+    <link href="~/Content/page.style/Login-Register.css" rel="stylesheet" />
+    <!--Collection-->
+    <link href="~/Content/page.style/Collection-Stylesheet.css" rel="stylesheet" />
+    <!--Bestseller-->
+    <link href="~/Content/page.style/bestseller-stylesheet.css" rel="stylesheet" />
+    <!--Detail-->
+    <link href="~/Content/page.style/Detail.css" rel="stylesheet" />
+    <!--Info-->
+    <link href="~/Content/page.style/Info.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+
+<body id="body">
+    <!--Header-->
+    <section id="header">
+        <div class="header-center-inner">
+            <!-- Left: social icons -->
+            <div class="header-left">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+
+
+            <!-- Center: logo -->
+            <div class="header-logo">
+                <a href="@Url.Action("Index", "TrangChu")">
+                    <img src="~/Pictures/Phoenix.png" class="logo" alt="Phoenix" width="100" height="100" />
+                </a>
+            </div>
+
+            <!-- Right: user & cart -->
+            <div class="header-right">
+
+                <!-- search box -->
+                <div class="search-box">
+                    <form method="get" action="@Url.Action("Shop", "TrangChu")" style="display:flex;">
+                        <input id="searchInput"
+                               class="search-box-input"
+                               type="text"
+                               name="keyword"
+                               placeholder="Search..."
+                               value="@Request.QueryString["keyword"]" />
+
+                        <button class="search-box-btn" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                        <!-- khung gợi ý -->
+                        <div id="search-suggest" class="search-suggest"></div>
+
+                    </form>
+                </div>
+
+
+                <div class="user_cart">
+                    @{ var user = Session["Account"] as ShopOnline.Models.Customer; }
+
+                    @if (user != null)
+                    {
+                        <a href="@Url.Action("Info","User")" title="">
+                            <img src="~/pictures/user_img/_user_img.png" class="user_img" />
+                            <div></div>
+                            <span class="user_name">@Html.DisplayName(user.NameCus)</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login","User")" title="Đăng nhập">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                    }
+
+                    <!-- Giỏ hàng -->
+
+
+                    @if (user != null)
+                    {
+                        <a href="@Url.Action("HienThiCart", "Cart")"><i class="fa-solid fa-bag-shopping"></i></a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("HienThiCart", "Cart")"><i class="fa-solid fa-bag-shopping"></i></a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <div>
+            <ul id="navbar">
+                <li><a href="@Url.Action("Index", "TrangChu")">HOME</a></li>
+
+                <!-- Dropdown Shop -->
+                <li class="dropdown">
+                    <a href="@Url.Action("Shop", "TrangChu")" class="no-underline">
+                        SHOP <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("Shop", "TrangChu", new { idCate = "TS" })">Áo thun</a></li>
+                        <li><a href="@Url.Action("Shop", "TrangChu", new { idCate = "JK" })">Áo khoác</a></li>
+                        <li><a href="@Url.Action("Shop", "TrangChu", new { idCate = "PT" })">Quần dài</a></li>
+                        <li><a href="@Url.Action("Shop", "TrangChu", new { idCate = "HD" })">Hoodie</a></li>
+                        <li><a href="@Url.Action("Shop", "TrangChu", new { idCate = "AC" })">Phụ kiện</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="@Url.Action("Bestseller", "TrangChu")">BESTSELLERS</a></li>
+                <li><a href="@Url.Action("Collections", "TrangChu")">COLLECTIONS</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Body -->
+    <div id="body-content">
+        @RenderBody()
+    </div>
+
+    <br />
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-inner">
+
+            <!-- Logo và tên -->
+            <div class="footer-col footer-brand">
+                <div class="brand">
+                    <img src="~/pictures/Phoenix.png" alt="Phoenix" class="footer-logo" />
+                    <div class="brand-text">
+                        <h3>Phoenix Shop</h3>
+                        <span>Shop Quần Áo Online</span>
+                    </div>
+                </div>
+
+                <h4>Danh mục</h4>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="@Url.Action("Index","TrangChu")">Home</a></li>
+                        <li><a href="@Url.Action("Shop","TrangChu")">Shop</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="@Url.Action("Bestseller","TrangChu")">BestSeller</a></li>
+                        <li><a href="@Url.Action("Collections","TrangChu")">Collections</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Cột Contact us -->
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>840 Sư Vạn Hạnh,<br />Chi Nhánh Độc Quyền</p>
+                <p>+84 012-345-678</p>
+                <p>phoniexshop@gmail.com</p>
+            </div>
+
+            <!-- Cột Góp ý -->
+            <div class="footer-col">
+                <h4>Góp ý</h4>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email của bạn" />
+                    <input type="text" placeholder="Lời góp ý" />
+                    <button type="submit">Gửi</button>
+                </form>
+            </div>
+
+            <!-- Social icons trên bên phải -->
+            <div class="footer-social">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <!-- nút back to top -->
+        <a href="#body" class="back-to-top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+        <a href="#footer" class="back-to-down">
+            <i class="fa-solid fa-arrow-down"></i>
+        </a>
+    </footer>
+
+    @*=====================================================================================*@
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector(".search-box-input");
+    const suggestBox = document.getElementById("search-suggest");
+    const detailBaseUrl = '@Url.Action("DetailShop", "Detail")';
+
+    searchInput.addEventListener("input", function () {
+        let keyword = this.value.trim();
+
+        if (keyword.length === 0) {
+            suggestBox.style.display = "none";
+            suggestBox.innerHTML = "";
+            return;
+        }
+
+        fetch(`/TrangChu/SearchSuggest?keyword=${encodeURIComponent(keyword)}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.length === 0) {
+                    suggestBox.style.display = "none";
+                    suggestBox.innerHTML = "";
+                    return;
+                }
+
+                let html = "";
+
+                data.forEach(p => {
+                    html += `
+                    <div class="search-suggest-item"
+                         onclick="window.location.href='${detailBaseUrl}?id=${p.ProductID}'">
+                        <img src='/pictures/tshirt/${p.ImagePro}' />
+                        <div>
+                            <div>${p.NamePro}</div>
+                            <small>${Number(p.Price).toLocaleString()}₫</small>
+                        </div>
+                    </div>`;
+                });
+
+                suggestBox.innerHTML = html;
+                suggestBox.style.display = "block";
+            });
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".search-box")) {
+            suggestBox.style.display = "none";
+        }
+    });
+});
+    </script>
+
+
+
+</body>
+
+
+</html>

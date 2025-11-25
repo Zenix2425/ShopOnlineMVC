@@ -1,0 +1,49 @@
+﻿@model ShopOnline.Models.Customer
+
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="info-wrapper">
+    <div class="info-left">
+        <h2 class="info-title">Thông tin tài khoản</h2>
+
+        <form method="post" action="@Url.Action("UpdateInfo","User")">
+            <!--Không hiển thị nhưng lấy ID để đổi-->
+            @Html.HiddenFor(m => m.IDCus)
+
+            <div class="info-item">
+                <label>Họ tên</label>
+                @Html.TextBoxFor(m => m.NameCus, new { @class = "info-input" })
+            </div>
+
+            <div class="info-item">
+                <label>Email</label>
+                @Html.TextBoxFor(m => m.EmailCus, new { @class = "info-input" })
+            </div>
+
+            <div class="info-item">
+                <label>Số điện thoại</label>
+                @Html.TextBoxFor(m => m.PhoneCus, new { @class = "info-input" })
+            </div>
+
+            <button type="submit" class="info-btn1">Cập nhật</button>
+        </form>
+
+
+    </div>
+
+    <!-- avatar -->
+    <div class="info-right">
+        <img src="~/pictures/user_img/_user_img.png" class="info-avatar" />
+        <p class="avatar-text">@Model.NameCus</p>
+
+        <a href="@Url.Action("Logout","User")" class="logout-btn">
+            Đăng xuất
+        </a>
+    </div>
+
+   
+
+</div>

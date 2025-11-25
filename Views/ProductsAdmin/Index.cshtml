@@ -1,0 +1,101 @@
+@model IEnumerable<ShopOnline.Models.Product>
+
+@{
+    ViewBag.Title = "Quản lý Sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Danh sách Sản phẩm</h3>
+    </div>
+    <div class="card-body">
+        <div style="margin-bottom: 20px;">
+            <a href="@Url.Action("Create")" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus"></span> Thêm mới
+            </a>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">ID</th>
+                        <th style="width: 12%;">Hình ảnh</th>
+                        <th style="width: 25%;">Tên sản phẩm</th>
+                        <th style="width: 15%;">Danh mục</th>
+                        <th style="width: 15%;">Giá</th>
+                        <th style="width: 25%; text-align: center;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ProductID</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.ImagePro))
+                                {
+                                    <img src="~/pictures/@item.ImagePro" alt="@item.NamePro" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;" />
+                                }
+                                else
+                                {
+                                    <div style="width: 60px; height: 60px; background: #e0e0e0; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                                        <span class="glyphicon glyphicon-picture" style="color: #999;"></span>
+                                    </div>
+                                }
+                            </td>
+                            <td>
+                                <strong>@item.NamePro</strong>
+                                @if (!string.IsNullOrEmpty(item.DecriptionPro))
+                                {
+                                    <br />
+                                    <small style="color: #999;">@(item.DecriptionPro.Length > 50 ? item.DecriptionPro.Substring(0, 50) + "..." : item.DecriptionPro)</small>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Category != null)
+                                {
+                                    <span class="label label-primary">@item.Category.NameCate</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">N/A</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Price.HasValue)
+                                {
+                                    <strong style="color: #27ae60;">@item.Price.Value.ToString("N0") VNĐ</strong>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">N/A</span>
+                                }
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="@Url.Action("Details", new { id = item.ProductID })" class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-info-sign"></span> Chi tiết
+                                </a>
+                                <a href="@Url.Action("Edit", new { id = item.ProductID })" class="btn btn-warning btn-sm">
+                                    <span class="glyphicon glyphicon-edit"></span> Sửa
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.ProductID })" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span> Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <strong>Thông báo:</strong> Chưa có sản phẩm nào.
+                <a href="@Url.Action("Create")">Thêm sản phẩm đầu tiên</a>
+            </div>
+        }
+    </div>
+</div>

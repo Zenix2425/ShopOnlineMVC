@@ -1,0 +1,141 @@
+﻿@model ShopOnline.Models.Product
+
+@{
+    // Placeholder cho giá cũ/giá gốc (nếu có sale)
+    decimal? OldPrice = 800000.00m;
+
+    ViewBag.Title = @Model.NamePro;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/page.style/Detail.css" rel="stylesheet" />
+<section id="product-detail">
+    <div class="detail-container">
+
+        <!-- Gallery -->
+        <div class="image-gallery-section">
+            <div class="thumbnails">
+                @foreach (var thumb in ViewBag.Thumbnails)
+                {
+                    <div class="thumbnail-item">
+                        <img src="@Url.Content("~/pictures/tshirt/" + thumb)" alt="@Model.NamePro" />
+                    </div>
+                }
+            </div>
+
+            <div class="main-image">
+                <img src="@Url.Content("~/pictures/tshirt/" + Model.ImagePro)" alt="@Model.NamePro" />
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="info-section">
+            <h1 class="product-name">@Model.NamePro</h1>
+
+            <div class="price-container">
+                <span class="current-price">@String.Format("{0:N0}₫", Model.Price)</span>
+            </div>
+
+            <div class="stock-status">
+                @if (ViewBag.Stock > 0)
+                {
+                    <span class="in-stock">In Stock</span>
+                    <span class="stock-info">(@ViewBag.Stock left)</span>
+                }
+                else
+                {
+                    <span class="out-stock">Out of Stock</span>
+                }
+            </div>
+
+            @if (ViewBag.Sizes.Length > 0)
+            {
+                <div class="size-selector">
+                    <label for="size">Size:</label>
+                    <div class="size-options">
+                        @foreach (var s in ViewBag.Sizes)
+                        {
+                            <input type="radio" id="@s" name="size" value="@s" />
+                            <label for="@s">@s</label>
+                        }
+                    </div>
+                </div>
+            }
+
+            <form action="@Url.Action("AddToCart", "Cart")" method="post" class="add-to-cart-form">
+                <input type="hidden" name="ProductID" value="@Model.ProductID" />
+                <div class="quantity-input-group">
+                    <label for="quantity">Quantity:</label>
+                    <div class="quantity-control">
+                        <button type="button" class="quantity-btn minus-btn">-</button>
+                        <input type="text" name="Quantity" value="1" class="quantity-input" readonly />
+                        <button type="button" class="quantity-btn plus-btn">+</button>
+                    </div>
+                </div>
+                <button type="submit" class="pre-order-btn">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products -->
+<section id="related-products">
+    <h2 class="section-title">Related Products</h2>
+    <div class="product-grid">
+        @foreach (var rp in ViewBag.RelatedProducts)
+        {
+            <div class="product-item">
+                <a href="@Url.Action("DetailShop", "Detail", new { id = rp.ProductID })">
+                    <img src="@Url.Content("~/pictures/tshirt/" + rp.ImagePro)" alt="@rp.NamePro" />
+                </a>
+                <div class="product-info">
+                    <p class="product-name-related">@rp.NamePro</p>
+                    <p class="product-price-related">@String.Format("{0:N0}₫", rp.Price)</p>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<script>
+
+    
+
+    // quantity và đổi thumb thành background
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const thumbnails = document.querySelectorAll(".thumbnail-item img");
+        const mainImage = document.querySelector(".main-image img");
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener("click", () => {
+                mainImage.src = thumb.src;
+                document.querySelectorAll(".thumbnail-item").forEach(item => item.classList.remove("active"));
+                thumb.parentElement.classList.add("active");
+            });
+        });
+
+        // ==== Quantity control ====
+        const stock = parseInt("@ViewBag.Stock") || 0;
+        const quantityInput = document.querySelector(".quantity-input");
+        const plusBtn = document.querySelector(".plus-btn");
+        const minusBtn = document.querySelector(".minus-btn");
+
+        plusBtn.addEventListener("click", () => {
+            let value = parseInt(quantityInput.value);
+            if (value < stock) {
+                quantityInput.value = value + 1;
+            } else {
+                alert(" Số lượng đã đạt giới hạn trong kho (" + stock + ")");
+            }
+        });
+
+        minusBtn.addEventListener("click", () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+            }
+        });
+    });
+</script>

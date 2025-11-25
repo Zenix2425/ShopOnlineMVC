@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "CheckOut_Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* 
+       NÚT "TIẾP TỤC MUA HÀNG"
+        */
+    .btn-continue {
+        display: inline-block; /* Hiển thị dạng khối nội tuyến (vừa căn hàng vừa cho padding) */
+        background-color: #007bff; /* Màu nền xanh dương chính (theo tone Bootstrap) */
+        color: white; /* Màu chữ trắng để nổi bật trên nền xanh */
+        padding: 10px 20px; /* Khoảng cách trong nút: 10px trên dưới, 20px trái phải */
+        border-radius: 6px; /* Bo góc nhẹ tạo cảm giác mềm mại */
+        text-decoration: none; /* Bỏ gạch chân mặc định của thẻ <a> */
+        font-weight: bold; /* In đậm chữ cho nổi bật hơn */
+        transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu mượt khi hover */
+        margin-right: 10px; /* Tạo khoảng cách bên phải (nếu đặt gần nút khác) */
+    }
+
+        /* Hiệu ứng khi rê chuột vào nút */
+        .btn-continue:hover {
+            background-color: #0056b3; /* Màu xanh đậm hơn khi hover */
+        }
+</style>
+<div style="text-align:left; margin-top:50px;">
+    <h2>Thanh toán thành công!</h2>
+    <p>Cảm ơn quý khách đã mua hàng. Hẹn gặp lại!</p>
+    <a href="@Url.Action("Shop", "TrangChu")" class="btn-continue">Tiếp tục mua hàng</a>
+    <a href="@Url.Action("DonHangCuaBan", "Cart")" class="btn-continue">Đơn Hàng Của Bạn</a>
+</div>

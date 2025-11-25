@@ -1,0 +1,125 @@
+﻿/* KHUNG CHÍNH 2 CỘT */
+.info-wrapper {
+    width: 80%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* cột trái */
+.info-left {
+    flex: 1;
+}
+
+.info-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #222;
+}
+
+.info-btn1 {
+    margin-left: auto;
+    margin-right: auto; 
+    display: block;
+    background: #963424;
+    color: #fff;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+/* Ô nhập liệu */
+.info-item {
+    margin-bottom: 18px;
+}
+
+.info-item label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.info-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+.info-input:focus {
+    border-color: #963424;
+    box-shadow: 0 0 5px rgba(150,52,36,0.3);
+}
+
+/* Nút cập nhật */
+.info-btn {
+    background: #963424;
+    color: #fff;
+    padding: 12px 26px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.info-btn:hover {
+    background: #7c2a1f;
+    transform: translateY(-2px);
+}
+
+
+/* avatar */
+.info-right {
+    width: 260px;
+    text-align: center;
+    border-left: 1px solid #ddd;
+    padding-left: 30px;
+}
+
+.info-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #963424;
+    margin-bottom: 12px;
+}
+
+.avatar-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Logout */
+.logout-btn {
+    display:flex;
+    margin-top: 18px;
+    padding: 10px 20px;
+    background: #444;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #222;
+}

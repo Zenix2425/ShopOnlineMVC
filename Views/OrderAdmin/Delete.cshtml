@@ -1,0 +1,44 @@
+@model ShopOnline.Models.OrderPro
+
+@{
+    ViewBag.Title = "Xóa đơn hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2>Xóa đơn hàng</h2>
+    <hr />
+
+    <h3 class="text-danger">Bạn có chắc chắn muốn xóa đơn hàng này?</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Mã đơn hàng</dt>
+                <dd>@Model.ID</dd>
+
+                <dt>Ngày đặt</dt>
+                <dd>@(Model.DateOrder.HasValue ? Model.DateOrder.Value.ToString("dd/MM/yyyy HH:mm") : "N/A")</dd>
+
+                <dt>Khách hàng</dt>
+                <dd>@(Model.Customer != null ? Model.Customer.NameCus : "N/A")</dd>
+
+                <dt>Địa chỉ giao hàng</dt>
+                <dd>@Model.AddressDeliverry</dd>
+            </dl>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Delete", "OrderAdmin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+
+        <button type="submit" class="btn btn-danger">
+            <span class="glyphicon glyphicon-trash"></span> Xác nhận xóa
+        </button>
+        <a href="@Url.Action("Index")" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left"></span> Hủy
+        </a>
+    }
+</div>

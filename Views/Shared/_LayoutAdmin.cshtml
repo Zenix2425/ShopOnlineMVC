@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Quản trị</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/page.style/Admin.css" rel="stylesheet" />
+
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <span class="glyphicon glyphicon-dashboard"></span>
+            Admin Panel
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="@Url.Action("Index", "Admin")">
+                    <i class="glyphicon glyphicon-dashboard"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "CategoryAdmin")">
+                    <i class="glyphicon glyphicon-list"></i> Danh mục
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "ProductsAdmin")">
+                    <i class="glyphicon glyphicon-shopping-cart"></i> Sản phẩm
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "CustomerAdmin")">
+                    <i class="glyphicon glyphicon-user"></i> Khách hàng
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "OrderAdmin")">
+                    <i class="glyphicon glyphicon-list-alt"></i> Đơn hàng
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <h1>@ViewBag.Title</h1>
+            <div class="user-info">
+                @if (Session["AdminUser"] != null)
+                {
+                    var admin = Session["AdminUser"] as ShopOnline.Models.AdminUser;
+                    
+
+                    <span><i class="glyphicon glyphicon-user"></i> @admin.NameUser</span>
+                    <a href="@Url.Action("Logout", "Admin")" class="btn-logout">
+                        <i class="glyphicon glyphicon-log-out"></i> Đăng xuất
+                    </a>
+                }
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

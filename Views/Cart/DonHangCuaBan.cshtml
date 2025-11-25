@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ShopOnline.Models.OrderPro>
+
+@{
+    ViewBag.Title = "DonHangCuaBan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/page.style/Cart/DonHangCuaBan.css" rel="stylesheet" />
+
+<div class="order-page">
+    <h2 class="order-title">Đơn hàng của bạn</h2>
+
+    <div class="order-table-box">
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Mã hóa đơn</th>
+                    <th>Ngày đặt</th>
+                    <th>Số lượng</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="col-id">#@item.ID</td>
+                        <td class="col-date">@item.DateOrder</td>
+                        <td class="col-qty">@item.OrderDetails.Sum(x => x.Quantity)</td>
+
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(item.Status))
+                            {
+                                var status = item.Status.Trim().ToLower();
+
+                                if (status == "chưa xác nhận")
+                                {
+                                    <span class="tag tag-pending">Chưa xác nhận</span>
+                                }
+                                else if (status == "đã hủy")
+                                {
+                                    <span class="tag tag-cancel">Đã hủy</span>
+                                }
+                                else if (status == "đã xác nhận")
+                                {
+                                    <span class="tag tag-done">Đã xác nhận</span>
+                                }
+                            }
+                        </td>
+
+
+                        <td>
+                            @Html.ActionLink("Chi tiết", "Chitiet", "Detail",
+                                new { id = item.ID },
+                                new { @class = "btn-detail" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="cart-button">
+        <a href="@Url.Action("HienThiCart", "Cart")" class="btn-cart">Quay lại giỏ hàng</a>
+    </div>
+</div>

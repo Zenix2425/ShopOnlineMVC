@@ -1,0 +1,404 @@
+﻿body {
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 64px;
+    color: #;
+}
+
+h2 {
+    font-size: 22px;
+    line-height: 54px;
+    color: #;
+}
+
+h4 {
+    font-size: 20px;
+    color: #;
+}
+
+h6 {
+    font-weight: 700;
+    font-size: 12px;
+}
+
+p {
+    font-size: 16px;
+    color: #;
+    margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+    padding: 40px 80px;
+}
+
+.section-m1 {
+    margin: 10px 0;
+}
+
+/* Header */
+#header {
+    background-color: white;
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    height: 170px;
+}
+
+.header-center-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+}
+
+.header-left a,
+.header-right a {
+    margin: 0 10px;
+    color: #000;
+    font-size: 18px;
+}
+
+.header-left, .header-right {
+    display: flex; /* bắt buộc flex để dùng gap */
+    align-items: center; /* căn giữa theo chiều dọc */
+    gap: 10px; /* khoảng cách giữa các icon */
+}
+
+.header-logo img {
+    padding: 8px;
+    display: block;
+    max-width: 100px;
+    margin: 0 auto;
+}
+/* Navbar wrapper */
+.navbar-wrapper {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    #navbar li {
+        list-style: none;
+        padding: 0 20px;
+        position: relative;
+    }
+
+        #navbar li a {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 2 00;
+            color: black;
+            transition: 0.03s ease;
+        }
+
+            #navbar li a:hover,
+            #navbar li a.active {
+                color: #963424;
+            }
+
+                #navbar li a.active::after,
+                #navbar li a:hover ::after {
+                    content: "";
+                    width: 30%;
+                    height: 2px;
+                    background-color: #963424;
+                    position: absolute;
+                    bottom: -4px;
+                    left: 20px;
+                }
+
+/* Home page*/
+#home_page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/*Hero*/
+
+#hero {
+    width: 100%;
+    height: 150px;
+    align-content: center;
+    text-align: center;
+    line-height: 0.5;
+}
+
+    #hero h1 {
+        margin: 0;
+        font-weight: 200;
+        font-size: 40px;
+    }
+
+    #hero p {
+        margin: 2px 0 0 0;
+        font-weight: 200;
+        font-size: 14px;
+    }
+
+    #hero hr {
+        display: inline-block; /* để width được áp dụng như khối inline */
+        width: 80%; /* độ dài dòng kẻ */
+        height: 1px; /* độ dày dòng kẻ */
+        background-color: black; /* màu dòng kẻ */
+        border: none; /* loại bỏ viền mặc định */
+        margin-top: 30px;
+    }
+
+
+/*side bar*/
+
+/*sidebar container */
+#sidebar {
+    width: 250px;
+    background-color: white;
+    padding: 20px;
+    float: left; /* đặt bên trái */
+    margin-left: 10px;
+}
+
+    #sidebar .sidebar-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #sidebar .sidebar-item {
+        margin-bottom: 10px;
+    }
+
+    #sidebar .sidebar-btn {
+        width: 100%; /* chiếm toàn khung sidebar */
+        text-align: left; /* canh chữ sang trái */
+        padding: 15px 10px; /* khoảng cách trong button */
+        font-size: 24px; /* chữ to hơn */
+        font-weight: 300; /* chữ đậm */
+        margin-bottom: 5px; /* khoảng cách giữa các button */
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex; /* để canh chữ + icon */
+        justify-content: space-between; /* chữ bên trái, icon bên phải */
+        align-items: center;
+    }
+
+        /* xoay icon mượt */
+        #sidebar .sidebar-btn i {
+            transition: transform 0.3s;
+        }
+
+
+    #sidebar .submenu {
+        list-style: none;
+        padding-left: 15px;
+        max-height: 0; /* đóng */
+        overflow: hidden; /* ẩn item khi đóng */
+        transition: max-height 0.4s ease;
+        border-left: 1px solid #333;
+    }
+
+        #sidebar .submenu li a {
+            display: block;
+            padding: 8px 0;
+            text-decoration: none;
+            color: #333;
+        }
+
+            #sidebar .submenu li a:hover {
+                color: #963424;
+            }
+
+        /* submenu sau khi mở */
+        #sidebar .submenu.active {
+            max-height: 500px; /* đủ chứa nội dung, có thể tăng nếu nhiều item */
+        }
+
+.sidebar-btn.active i {
+    transform: rotate(180deg);
+}
+
+/*chia đôi sidebar và phần product*/
+.shop-container {
+    display: flex; /* xếp con theo hàng ngang */
+    gap: 20px; /* khoảng cách giữa sidebar và product */
+}
+
+
+
+
+/*product*/
+
+#product1 {
+    text-align: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    flex: 1; /* phần còn lại sẽ dành cho product */
+}
+
+
+    #product1 .pro {
+        width: 23%;
+        min-width: 250px;
+        /* min-width là giới hạn nhỏ nhất pro có thể co lại */
+        height: 400px;
+        padding: 10px 12px;
+        /* padding: vertical horizontal */
+        /*        border: 1px solid rgb(167, 177, 168);       */
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+        margin: 15px 0;
+        transition: 0.2s ease;
+        position: relative;
+    }
+
+        #product1 .pro:hover {
+            box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        #product1 .pro img {
+            width: 100%;
+            /* ko cần height */
+            border-radius: 20px;
+        }
+
+        #product1 .pro .des {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+            #product1 .pro .des span {
+                font-size: 12px;
+                color: #606063;
+            }
+
+            #product1 .pro .des h5 {
+                font-weight: 500;
+                font-size: 15px; /* giữ nguyên hoặc chỉnh lại kích thước */
+                text-transform: uppercase;
+                white-space: nowrap; /* không xuống dòng */
+                overflow: hidden; /* ẩn phần vượt quá */
+                text-overflow: ellipsis; /* hiện ... nếu quá dài */
+                position: relative; /* cần cho ::after */
+                margin: 0;
+                line-height: 1;
+            }
+
+
+
+                #product1 .pro .des h5::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: 0; /* đặt dưới chữ */
+                    height: 1px; /* độ dày underline */
+                    width: 0; /* ban đầu 0 */
+                    background-color: black; /* màu underline */
+                    transition: width 0.5s ease; /* animation kéo dài 0.5s */
+                }
+
+        /* khi hover vào .pro, mở rộng underline */
+        #product1 .pro:hover .des h5::after {
+            width: 100%; /* kéo dài hết chiều dài chữ */
+        }
+
+        #product1 .pro .des i {
+            font-size: 12px;
+            color: rgb(243, 181, 25);
+        }
+
+        #product1 .pro .des h4 {
+            padding-top: 7px;
+            font-size: 12px;
+            font-weight: 700;
+            color: black;
+        }
+
+        #product1 .pro .cart {
+            /* tự thêm tên class cart sau tên icon */
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50px;
+            background-color: #e8f6ea;
+            color: #088178;
+            border: 1px solid #cce7d0;
+            position: absolute;
+            bottom: 20px;
+            right: 10px;
+        }
+
+    #product1 .pro-container {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+        flex-wrap: wrap;
+        /* cho phép các phần tử con tự động xuống dòng nếu không đủ không gian để nằm trên một hàng */
+    }
+
+#banner {
+    background-image: url(../../pictures/banner/shop-banner-1.png);
+    width: 100%;
+    height: 110vh;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Pagination */
+#pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 50px 0 100px;
+}
+
+    #pagination hr {
+        width: 80%;
+        height: 1px;
+        background-color: black;
+        border: none;
+    }
+
+    #pagination .pages {
+        display: flex;
+        gap: 10px;
+    }
+
+        #pagination .pages a {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: black;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+            #pagination .pages a:hover {
+                background-color: #963424;
+                color: white;
+                border-color: #963424;
+            }

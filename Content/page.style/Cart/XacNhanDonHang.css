@@ -1,0 +1,143 @@
+﻿/* 
+   KHỐI CHÍNH TRANG XÁC NHẬN ĐƠN HÀNG
+    */
+.xacnhandonhang {
+    width: 80%; 
+    margin: 30px auto; 
+    font-family: Arial, sans-serif; 
+}
+
+/* 
+   BẢNG DANH SÁCH SẢN PHẨM TRONG ĐƠN
+    */
+.xacnhandonhang-table {
+    width: 100%; 
+    border-collapse: collapse; /*gộp viền bảng*/
+    margin-bottom: 20px; 
+}
+
+    /* Hình ảnh trong bảng sản phẩm */
+    .xacnhandonhang-table img {
+        width: 60px; 
+        height: 60px; 
+        object-fit: cover; /* Giữ tỉ lệ hình, cắt phần dư */
+        border-radius: 6px; 
+        margin-right: 10px; 
+        vertical-align: middle; 
+    }
+
+    /* Ô tiêu đề và ô dữ liệu trong bảng */
+    .xacnhandonhang-table th,
+    .xacnhandonhang-table td {
+        border: 1px solid #ddd; 
+        padding: 10px; 
+        text-align: center; 
+    }
+
+/* 
+   KHỐI THÔNG TIN KHÁCH HÀNG VÀ TỔNG KẾT
+*/
+.xacnhandonhang-thongtin {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Mỗi khối (customer / summary) chiếm 48% chiều ngang */
+.xacnhandonhang-customer,
+.xacnhandonhang-summary {
+    width: 48%; 
+}
+
+
+/* 
+   NHÃN VÀ Ô NHẬP THÔNG TIN
+*/
+.xacnhandonhang-label {
+    display: block;
+    margin-top: 10px; 
+    font-weight: bold;
+}
+
+
+.xacnhandonhang-textarea,
+.xacnhandonhang-input {
+    width: 100%; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px;
+    margin-bottom: 10px; 
+}
+
+
+/* 
+   PHẦN HIỂN THỊ TỔNG TIỀN
+*/
+.xacnhandonhang-total {
+    color: red; 
+    font-weight: bold; 
+    font-size: 18px; 
+}
+
+
+/* 
+   KHỐI NÚT HÀNH ĐỘNG
+*/
+.xacnhandonhang-actions {
+    margin-top: 20px;
+}
+
+
+/* Nút xác nhận thanh toán */
+.nutthanhtoan {
+    background-color: green; 
+    color: white; 
+    padding: 10px 15px; 
+    border-radius: 6px; 
+    text-decoration: none; 
+}
+
+/* Nút hủy đơn hàng */
+.nuthuy {
+    background-color: red;
+    color: white; 
+    padding: 10px 15px; 
+    border-radius: 6px; 
+    text-decoration: none; 
+    margin-left: 10px; 
+}
+
+    /* Hiệu ứng hover cho cả 2 nút */
+    .nutxacnhan:hover,
+    .nuthuy:hover {
+        opacity: 0.9; /* Giảm độ sáng => tạo hiệu ứng khi hover */
+    }
+
+
+/* 
+       RESPONSIVE
+ */
+@media (max-width: 768px) {
+
+    /* Khi màn hình nhỏ  xếp dọc */
+    .confirm-order__info {
+        flex-direction: column; 
+    }
+
+    /* Mỗi khối chiếm 100% màn hình */
+    .confirm-order__customer,
+    .confirm-order__summary {
+        width: 100%; 
+    }
+
+    /* Nút to, dễ bấm hơn trên điện thoại */
+    .btn-confirm,
+    .btn-cancel {
+        display: block; 
+        width: 100%; 
+        text-align: center; 
+        margin: 8px 0;
+    }
+}
+
+

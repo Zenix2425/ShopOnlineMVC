@@ -1,0 +1,121 @@
+﻿@model IEnumerable<ShopOnline.Models.Product>
+
+@{
+    ViewBag.Title = "Bestseller";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!--Hero-->
+<section id="hero">
+    <h1>Bestsellers</h1>
+    <p>Home / Bestsellers</p><br />
+    <p>Thanh xuân như một tách trà </p><br />
+    <p>Không săn sale sớm hết bà thanh xuân.</p><br />
+    <p>Những sản phẩm hot hit nhất của shop hiện tại</p>
+    <hr />
+</section>
+
+<!-- Container cho Sidebar và Product -->
+<div class="shop-container">
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <button class="sidebar-btn">Categories <i class="fa-solid fa-chevron-down"></i></button>
+                <ul class="submenu">
+                    @foreach (var cate in ViewBag.Categories)
+                    {
+                        var activeClass = (ViewBag.CurrentCategory == cate.IDCate) ? "active-category" : "";
+
+                        <li>
+                            <a class="@activeClass"
+                               href="@Url.Action("BestSeller", "TrangChu", new { idCate = cate.IDCate })">
+                                @cate.NameCate
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </li>
+
+            <li class="sidebar-item">
+                <button class="sidebar-btn">Availability <i class="fa-solid fa-chevron-down"></i></button>
+                <ul class="submenu">
+                    <li><a href="@Url.Action("Shop", "TrangChu")">In Stock</a></li>
+                    <li><a href="">Out of Stock</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Products -->
+    <section id="product1">
+        <div class="pro-container">
+
+            @foreach (var item in Model)
+            {
+                <div class="pro">
+                    <a href="@Url.Action("DetailShop", "Detail", new { id = item.ProductID })">
+                        <img src="@Url.Content("~/pictures/tshirt/" + item.ImagePro)" alt="@item.NamePro" />
+                    </a>
+
+                    <div class="des">
+                        <h5>@item.NamePro</h5>
+
+                        <div class="produce-price">
+                            <span class="new-price">@String.Format("{0:N0}₫", item.Price)</span>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </section>
+</div>
+
+<!-- Pagination -->
+<section id="pagination" class="section-p1">
+    <hr id="line" />
+    <div class="pages">
+        <a href="@Url.Action("Bestseller", "TrangChu")">1</a>
+        <a href="@Url.Action("Bestseller", "TrangChu")">2</a>
+        <a href="@Url.Action("Bestseller", "TrangChu")">3</a>
+        <a href="@Url.Action("Bestseller", "TrangChu")"><i class="fa-solid fa-greater-than"></i></a>
+    </div>
+</section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Lấy tất cả các button trong sidebar
+        const sidebarButtons = document.querySelectorAll(".sidebar-btn");
+
+        sidebarButtons.forEach(btn => {
+            btn.addEventListener("click", function () {
+
+                const submenu = this.nextElementSibling; // submenu liền sau button
+
+                // Nếu submenu đang mở -> đóng lại
+                if (submenu.style.maxHeight) {
+                    submenu.style.maxHeight = null;
+                }
+                // Nếu submenu đang đóng -> mở ra
+                else {
+                    submenu.style.maxHeight = submenu.scrollHeight + "px";
+
+                    // scrollHeight: Chiều cao thật của nội dung bên trong element, kể cả phần bị ẩn.
+                }
+
+                // Xoay icon
+                this.classList.toggle("active");
+
+                //.toggle() = Nếu có class thì xóa – nếu chưa có thì thêm.
+            });
+        });
+
+    });
+</script>

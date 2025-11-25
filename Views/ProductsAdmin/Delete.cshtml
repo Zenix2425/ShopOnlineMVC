@@ -1,0 +1,54 @@
+@model ShopOnline.Models.Product
+
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2>Xóa sản phẩm</h2>
+    <hr />
+
+    <h3 class="text-danger">Bạn có chắc chắn muốn xóa sản phẩm này?</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    @if (!string.IsNullOrEmpty(Model.ImagePro))
+                    {
+                        <img src="~/pictures/@Model.ImagePro" alt="@Model.NamePro" class="img-thumbnail" style="width: 100%;" />
+                    }
+                </div>
+                <div class="col-md-9">
+                    <dl class="dl-horizontal">
+                        <dt>Tên sản phẩm</dt>
+                        <dd>@Model.NamePro</dd>
+
+                        <dt>Mô tả</dt>
+                        <dd>@Model.DecriptionPro</dd>
+
+                        <dt>Danh mục</dt>
+                        <dd>@(Model.Category != null ? Model.Category.NameCate : "N/A")</dd>
+
+                        <dt>Giá</dt>
+                        <dd>@(Model.Price.HasValue ? Model.Price.Value.ToString("N0") + " VNĐ" : "N/A")</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Delete", "ProductsAdmin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ProductID)
+
+        <button type="submit" class="btn btn-danger">
+            <span class="glyphicon glyphicon-trash"></span> Xác nhận xóa
+        </button>
+        <a href="@Url.Action("Index")" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left"></span> Hủy
+        </a>
+    }
+</div>

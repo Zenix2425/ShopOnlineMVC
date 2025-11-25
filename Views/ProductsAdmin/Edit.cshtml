@@ -1,0 +1,143 @@
+@model ShopOnline.Models.Product
+
+@{
+    ViewBag.Title = "Chỉnh sửa sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <h2>Chỉnh sửa sản phẩm</h2>
+    <hr />
+
+    @using (Html.BeginForm("Edit", "ProductsAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ProductID)
+            @Html.HiddenFor(model => model.ImagePro)
+            @Html.HiddenFor(model => model.ImageThumb1)
+            @Html.HiddenFor(model => model.ImageThumb2)
+            @Html.HiddenFor(model => model.ImageThumb3)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NamePro, "Tên sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NamePro, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DecriptionPro, "Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.DecriptionPro, new { @class = "form-control", rows = 4 })
+                    @Html.ValidationMessageFor(model => model.DecriptionPro, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IDCate, "Danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("IDCate", (SelectList)ViewBag.IDCate, "-- Chọn danh mục --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDCate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, "Giá", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", type = "number", step = "1000" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Stock, "Số lượng tồn kho", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0" } })
+                    @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AvailableSizes, "Kích cỡ có sẵn", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AvailableSizes, new { htmlAttributes = new { @class = "form-control", placeholder = "VD: S, M, L, XL" } })
+                    @Html.ValidationMessageFor(model => model.AvailableSizes, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hình ảnh hiện tại</label>
+                <div class="col-md-10">
+                    @if (!string.IsNullOrEmpty(Model.ImagePro))
+                    {
+                        <img src="~/pictures/@Model.ImagePro" alt="@Model.NamePro" style="width: 200px; height: 200px; object-fit: cover;" class="img-thumbnail" />
+                    }
+                    else
+                    {
+                        <p class="text-muted">Chưa có hình ảnh</p>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Đổi hình ảnh chính</label>
+                <div class="col-md-10">
+                    <input type="file" name="file" class="form-control" accept="image/*" />
+                    <p class="help-block">Để trống nếu không muốn thay đổi hình ảnh</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hình thu nhỏ 1</label>
+                <div class="col-md-10">
+                    @if (!string.IsNullOrEmpty(Model.ImageThumb1))
+                    {
+                        <img src="~/pictures/@Model.ImageThumb1" alt="Thumb 1" style="width: 100px; height: 100px; object-fit: cover;" class="img-thumbnail" />
+                    }
+                    <input type="file" name="fileThumb1" class="form-control" accept="image/*" style="margin-top: 5px;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hình thu nhỏ 2</label>
+                <div class="col-md-10">
+                    @if (!string.IsNullOrEmpty(Model.ImageThumb2))
+                    {
+                        <img src="~/pictures/@Model.ImageThumb2" alt="Thumb 2" style="width: 100px; height: 100px; object-fit: cover;" class="img-thumbnail" />
+                    }
+                    <input type="file" name="fileThumb2" class="form-control" accept="image/*" style="margin-top: 5px;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Hình thu nhỏ 3</label>
+                <div class="col-md-10">
+                    @if (!string.IsNullOrEmpty(Model.ImageThumb3))
+                    {
+                        <img src="~/pictures/@Model.ImageThumb3" alt="Thumb 3" style="width: 100px; height: 100px; object-fit: cover;" class="img-thumbnail" />
+                    }
+                    <input type="file" name="fileThumb3" class="form-control" accept="image/*" style="margin-top: 5px;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-floppy-disk"></span> Lưu thay đổi
+                    </button>
+                    <a href="@Url.Action("Index")" class="btn btn-default">
+                        <span class="glyphicon glyphicon-arrow-left"></span> Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

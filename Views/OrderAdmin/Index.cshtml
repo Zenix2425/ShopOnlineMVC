@@ -1,0 +1,125 @@
+@model IEnumerable<ShopOnline.Models.OrderPro>
+
+@{
+    ViewBag.Title = "Quản lý Đơn hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Danh sách Đơn hàng</h3>
+    </div>
+    <div class="card-body">
+        <!-- Filter Form -->
+        <div class="panel panel-default" style="margin-bottom: 20px;">
+            <div class="panel-heading">
+                <strong><span class="glyphicon glyphicon-filter"></span> Bộ lọc</strong>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Index", "OrderAdmin", FormMethod.Get, new { @class = "form-inline" }))
+                {
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="fromDate">Từ ngày:</label>
+                        <input type="date" name="fromDate" id="fromDate" class="form-control" value="@ViewBag.FromDate" />
+                    </div>
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="toDate">Đến ngày:</label>
+                        <input type="date" name="toDate" id="toDate" class="form-control" value="@ViewBag.ToDate" />
+                    </div>
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="customerId">Khách hàng:</label>
+                        @Html.DropDownList("customerId", (SelectList)ViewBag.CustomerList, "-- Tất cả --", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="status">Trạng thái:</label>
+                        @Html.DropDownList("status", (SelectList)ViewBag.StatusList, "-- Tất cả --", new { @class = "form-control" })
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-search"></span> Lọc
+                    </button>
+                    <a href="@Url.Action("Index")" class="btn btn-default">
+                        <span class="glyphicon glyphicon-refresh"></span> Xóa lọc
+                    </a>
+                }
+            </div>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">Mã ĐH</th>
+                        <th style="width: 12%;">Ngày đặt</th>
+                        <th style="width: 15%;">Khách hàng</th>
+                        <th style="width: 25%;">Địa chỉ giao hàng</th>
+                        <th style="width: 15%;">Trạng thái</th>
+                        <th style="width: 25%; text-align: center;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        string statusClass = "";
+                        string statusText = item.Status?.Trim() ?? "Chưa xử lý";
+                        switch (statusText)
+                        {
+                            case "Chờ xác nhận":
+                                statusClass = "label label-warning";
+                                break;
+                            case "Đã xác nhận":
+                                statusClass = "label label-info";
+                                break;
+                            case "Đang giao hàng":
+                                statusClass = "label label-primary";
+                                break;
+                            case "Đã giao hàng":
+                                statusClass = "label label-success";
+                                break;
+                            case "Đã hủy":
+                                statusClass = "label label-danger";
+                                break;
+                            default:
+                                statusClass = "label label-default";
+                                break;
+                        }
+                        <tr>
+                            <td><strong>#@item.ID</strong></td>
+                            <td>
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                @(item.DateOrder.HasValue ? item.DateOrder.Value.ToString("dd/MM/yyyy") : "N/A")
+                            </td>
+                            <td>
+                                <strong>@(item.Customer != null ? item.Customer.NameCus : "N/A")</strong>
+                            </td>
+                            <td>
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                @(item.AddressDeliverry != null && item.AddressDeliverry.Length > 30 ? item.AddressDeliverry.Substring(0, 30) + "..." : item.AddressDeliverry)
+                            </td>
+                            <td>
+                                <span class="@statusClass">@statusText</span>
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-info-sign"></span> Chi tiết
+                                </a>
+                                <a href="@Url.Action("Edit", new { id = item.ID })" class="btn btn-warning btn-sm">
+                                    <span class="glyphicon glyphicon-edit"></span> Sửa
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.ID })" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span> Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <strong>Thông báo:</strong> Không tìm thấy đơn hàng nào phù hợp với bộ lọc.
+            </div>
+        }
+    </div>
+</div>
