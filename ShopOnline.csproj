@@ -181,6 +181,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\QLBH2025.mdf" />
+    <Content Include="App_Data\QLBH2025.sql" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -204,11 +206,13 @@
     <Content Include="Content\page.style\chitiet.css" />
     <Content Include="Content\page.style\Collection-Stylesheet.css" />
     <Content Include="Content\page.style\Detail.css" />
+    <Content Include="Content\page.style\EditAdminOrder.css" />
     <Content Include="Content\page.style\home-StyleSheet.css" />
     <Content Include="Content\page.style\Info.css" />
     <Content Include="Content\page.style\Login-Register.css" />
     <Content Include="Content\page.style\Shop-StyleSheet.css" />
     <Content Include="Content\page.style\Cart\XacNhanDonHang.css" />
+    <Content Include="Database\QLBH2025.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -363,9 +367,7 @@
     <Content Include="Views\ProductsAdmin\Index.cshtml" />
     <Content Include="Views\Detail\Chitiet.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />

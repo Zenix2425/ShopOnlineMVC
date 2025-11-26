@@ -37,7 +37,9 @@
                             <td>
                                 @if (!string.IsNullOrEmpty(item.ImagePro))
                                 {
-                                    <img src="~/pictures/@item.ImagePro" alt="@item.NamePro" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;" />
+                                    <img src="@Url.Content("~/pictures/tshirt/" + item.ImagePro)"
+                                         alt="@item.NamePro"
+                                         style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px;" />
                                 }
                                 else
                                 {

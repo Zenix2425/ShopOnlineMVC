@@ -16,6 +16,7 @@
             <thead>
                 <tr>
                     <th>Mã hóa đơn</th>
+                    <th>Tên sản phẩm</th>
                     <th>Ngày đặt</th>
                     <th>Số lượng</th>
                     <th>Trạng thái</th>
@@ -28,6 +29,12 @@
                 {
                     <tr>
                         <td class="col-id">#@item.ID</td>
+                        <td class="col-nameproduct">
+                            @foreach ( var p in item.OrderDetails)
+                            {
+                                <div>@p.Product.NamePro</div>
+                            }
+                        </td>
                         <td class="col-date">@item.DateOrder</td>
                         <td class="col-qty">@item.OrderDetails.Sum(x => x.Quantity)</td>
 

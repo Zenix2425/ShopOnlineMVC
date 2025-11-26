@@ -116,14 +116,23 @@ namespace ShopOnline.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            OrderPro order = db.OrderProes.Find(id);
+            // Nên Include luôn Customer cho chắc
+            var order = db.OrderProes
+                          .Include("Customer")
+                          .FirstOrDefault(o => o.ID == id);
+
             if (order == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.IDCus = new SelectList(db.Customers, "IDCus", "NameCus", order.IDCus);
+            // Gửi tên khách sang View
+            ViewBag.CustomerName = order.Customer != null
+                ? order.Customer.NameCus
+                : "Không xác định";
+
             ViewBag.StatusList = new SelectList(StatusOptions, order.Status?.Trim());
+
             return View(order);
         }
 
@@ -143,8 +152,10 @@ namespace ShopOnline.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCus = new SelectList(db.Customers, "IDCus", "NameCus", order.IDCus);
+            var customer = db.Customers.Find(order.IDCus);
+            ViewBag.CustomerName = customer != null ? customer.NameCus : "Không xác định";
             ViewBag.StatusList = new SelectList(StatusOptions, order.Status?.Trim());
+
             return View(order);
         }
 

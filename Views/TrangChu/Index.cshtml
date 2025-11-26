@@ -23,12 +23,12 @@
                     @foreach (var item in Model)
                     {
                         <div class="pro">
-                            <a href="@Url.Action("DetailShop", "Detail", new { id = item.ProductID })">
+                            <a href="@Url.Action("DetailShop", "Detail", new { id = item.ProductID })"> <!--Lấy id bên detailcontroller-->
                                 <img src="@Url.Content("~/pictures/tshirt/" + item.ImagePro)" alt="@item.NamePro" />
                             </a>
                             <div class="des">
                                 <h5>@item.NamePro</h5>
-                                <h4>@String.Format("{0:N0}₫", item.Price)</h4>
+                                <h4>@String.Format("{0:N0}₫", item.Price)</h4> <!--In ra dấu phân cách hàng nghìn-->
                             </div>
                         </div>
                     }

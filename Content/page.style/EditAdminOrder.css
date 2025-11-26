@@ -1,0 +1,12 @@
+﻿.edit {
+    background-color: #D9D4D3; /* xám nhạt */
+    padding: 10px 14px; /* tạo khoảng cách đẹp */
+    border-radius: 6px; /* bo góc mềm */
+    font-size: 15px; /* chữ dễ đọc */
+    font-weight: 500; /* hơi đậm nhẹ */
+    color: #333; /* màu chữ đậm hơn */
+    border: 1px solid #c8c8c8; /* viền mảnh */
+    display: inline-block; /* giữ form gọn gàng */
+    min-width: 180px;
+}
+

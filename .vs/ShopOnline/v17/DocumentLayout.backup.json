@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Downloads\\Final2\\ShopOnline\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{12515BD1-148D-481D-AF12-3564448DBBB8}|ShopOnline.csproj|d:\\downloads\\final2\\shoponline\\views\\orderadmin\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{12515BD1-148D-481D-AF12-3564448DBBB8}|ShopOnline.csproj|solutionrelative:views\\orderadmin\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12515BD1-148D-481D-AF12-3564448DBBB8}|ShopOnline.csproj|d:\\downloads\\final2\\shoponline\\content\\page.style\\editadminorder.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{12515BD1-148D-481D-AF12-3564448DBBB8}|ShopOnline.csproj|solutionrelative:content\\page.style\\editadminorder.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,6 +47,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EditAdminOrder.css",
+              "DocumentMoniker": "D:\\Downloads\\Final2\\ShopOnline\\Content\\page.style\\EditAdminOrder.css",
+              "RelativeDocumentMoniker": "Content\\page.style\\EditAdminOrder.css",
+              "ToolTip": "D:\\Downloads\\Final2\\ShopOnline\\Content\\page.style\\EditAdminOrder.css*",
+              "RelativeToolTip": "Content\\page.style\\EditAdminOrder.css*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-26T07:46:27.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Downloads\\Final2\\ShopOnline\\Views\\OrderAdmin\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\OrderAdmin\\Edit.cshtml",
+              "ToolTip": "D:\\Downloads\\Final2\\ShopOnline\\Views\\OrderAdmin\\Edit.cshtml",
+              "RelativeToolTip": "Views\\OrderAdmin\\Edit.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T07:40:25.471Z",
+              "EditorCaption": ""
             }
           ]
         },
