@@ -9,15 +9,13 @@
 <div class="auth-container">
     <h2>Tạo tài khoản mới</h2>
 
-
-
     @using (Html.BeginForm("Register", "User", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
         <label>Tên đăng nhập</label>
         @Html.TextBoxFor(m => m.NameCus, new { placeholder = "Nhập tên đăng nhập", required = "required" })
-
+        
         <label>Email</label>
         @Html.TextBoxFor(m => m.EmailCus, new { type = "email", placeholder = "Nhập email của bạn", required = "required" })
 
@@ -35,7 +33,7 @@
             }
     @if (ViewBag.Notification != null)
     {
-        <p class="error" style="red">@ViewBag.Notification</p>
+        <p class="error" style="color:red">@ViewBag.Notification</p>
     }
     @if (ViewBag.NotificationEmail != null)
     {

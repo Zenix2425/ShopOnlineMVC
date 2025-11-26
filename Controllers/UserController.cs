@@ -18,31 +18,7 @@ namespace ShopOnline.Controllers
             return View();
         }
 
-        //Login Customer
-        //[HttpPost]
-        //public ActionResult Login(Customer cus)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-
-        //        var account = db.Customer.FirstOrDefault(k => k.EmailCus == cus.EmailCus && k.PasswordUser == cus.PasswordUser);
-        //        if (account != null)
-        //        {
-
-        //            Session["Account"] = account;
-        //            Session["IDCus"] = account.IDCus;
-        //            return RedirectToAction("Index", "TrangChu");
-        //        }
-        //        else
-        //            ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không đúng";
-        //    }
-        //    return View();
-        //}
-
-
-
         [HttpPost]
-
         public ActionResult Login(Customer model)
         {
             // 1. Kiểm tra nhập đủ chưa
@@ -59,12 +35,12 @@ namespace ShopOnline.Controllers
             if (admin != null)
             {
                 Session["AdminUser"] = admin;
-                Session["Account"] = null;      
+                Session["Account"] = null;      //customer
 
                 return RedirectToAction("Index", "Admin");
             }
 
-            // 3. Không phải admin -> check CUSTOMER
+            // 3. Không phải admin -> check cus
             var account = db.Customers
                             .FirstOrDefault(c => c.EmailCus == model.EmailCus
                                               && c.PasswordUser == model.PasswordUser);
@@ -72,7 +48,7 @@ namespace ShopOnline.Controllers
             {
                 Session["Account"] = account;
                 Session["IDCus"] = account.IDCus;
-                Session["AdminUser"] = null;        // clear session admin nếu có
+                Session["AdminUser"] = null;        // clear session admin nếu ko có
 
                 // Chuyển tới trang khách
                 return RedirectToAction("Index", "TrangChu");
@@ -80,6 +56,7 @@ namespace ShopOnline.Controllers
 
             // 4. Sai cả 2
             ViewBag.Error = "Tên đăng nhập hoặc mật khẩu không đúng!";
+
             return View(model);
         }
 
@@ -113,6 +90,9 @@ namespace ShopOnline.Controllers
             db.SaveChanges();
 
             // 4) Redirect về trang Login
+            ViewBag.Notification = "Mật khẩu xác nhận không chính xác";
+            ViewBag.NotificationEmail = "Đã có người đăng ký email này";
+
             return RedirectToAction("Login", "User");
         }
 
@@ -152,8 +132,6 @@ namespace ShopOnline.Controllers
             Session.Clear();
             return RedirectToAction("Login", "User");
         }
-
-       
 
     }
 }

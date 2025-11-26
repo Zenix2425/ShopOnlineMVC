@@ -74,7 +74,7 @@
                 <div class="col-md-10">
                     @if (!string.IsNullOrEmpty(Model.ImagePro))
                     {
-                        <img src="~/pictures/@Model.ImagePro" alt="@Model.NamePro" style="width: 200px; height: 200px; object-fit: cover;" class="img-thumbnail" />
+                        <img src="@Url.Content("/pictures/tshirt/" + @Model.ImagePro)" alt="@Model.NamePro" style="width: 200px; height: 200px; object-fit: cover;" class="img-thumbnail" />
                     }
                     else
                     {
@@ -96,7 +96,7 @@
                 <div class="col-md-10">
                     @if (!string.IsNullOrEmpty(Model.ImageThumb1))
                     {
-                        <img src="~/pictures/@Model.ImageThumb1" alt="Thumb 1" style="width: 100px; height: 100px; object-fit: cover;" class="img-thumbnail" />
+                        <img src="@Url.Content("/pictures/tshirt/" + @Model.ImageThumb1)" alt="Thumb 1" style="width: 100px; height: 100px; object-fit: cover;" class="img-thumbnail" />
                     }
                     <input type="file" name="fileThumb1" class="form-control" accept="image/*" style="margin-top: 5px;" />
                 </div>
@@ -107,7 +107,7 @@
                 <div class="col-md-10">
                     @if (!string.IsNullOrEmpty(Model.ImageThumb2))
                     {
-                        <img src="~/pictures/@Model.ImageThumb2" alt="Thumb 2" style="width: 100px; height: 100px; object-fit: cover;" class="img-thumbnail" />
+                        <img src="~/pictures/tshirt/@Model.ImageThumb2" alt="Thumb 2" style="width: 100px; height: 100px; object-fit: cover;" class="img-thumbnail" />
                     }
                     <input type="file" name="fileThumb2" class="form-control" accept="image/*" style="margin-top: 5px;" />
                 </div>
@@ -118,7 +118,7 @@
                 <div class="col-md-10">
                     @if (!string.IsNullOrEmpty(Model.ImageThumb3))
                     {
-                        <img src="~/pictures/@Model.ImageThumb3" alt="Thumb 3" style="width: 100px; height: 100px; object-fit: cover;" class="img-thumbnail" />
+                        <img src="~/pictures/tshirt/@Model.ImageThumb3" alt="Thumb 3" style="width: 100px; height: 100px; object-fit: cover;" class="img-thumbnail" />
                     }
                     <input type="file" name="fileThumb3" class="form-control" accept="image/*" style="margin-top: 5px;" />
                 </div>

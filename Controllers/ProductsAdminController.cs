@@ -39,7 +39,7 @@ namespace ShopOnline.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest); // tr? v? 400
             }
 
             Product products = db.Products.Find(id);

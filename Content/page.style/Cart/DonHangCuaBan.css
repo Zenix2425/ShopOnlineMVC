@@ -1,99 +1,105 @@
-﻿
-/* Toàn bộ trang đơn hàng */
+﻿/* Toàn bộ trang đơn hàng */
 .order-page {
-    max-width: 1100px; /* Giới hạn chiều rộng tối đa */
-    margin: 30px auto; /* Căn giữa trang */
-    font-family: 'Poppins', sans-serif; /* Font chữ sử dụng */
+    max-width: 1100px;
+    margin: 30px auto;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Tiêu đề của trang */
 .order-title {
-    font-size: 26px; /* Kích thước chữ lớn */
-    font-weight: 700; /* Chữ đậm */
-    margin-bottom: 20px; /* Khoảng cách dưới */
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
 /* Khung chứa bảng */
 .order-table-box {
-    background: #fff; /* Nền trắng */
-    padding: 20px; /* Bo lề bên trong */
-    border-radius: 8px; /* Bo góc nhẹ */
-    box-shadow: 0 0 10px rgba(0,0,0,0.05); /* Đổ bóng nhẹ */
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
 /* Bảng đơn hàng */
 .order-table {
-    width: 100%; /* Chiếm toàn bộ chiều rộng */
-    border-collapse: collapse; /* Gộp đường viền */
+    width: 100%;
+    border-collapse: collapse;
 }
 
     /* Header của bảng */
     .order-table thead th {
-        text-align: left; /* Canh trái chữ */
-        padding: 14px; /* Khoảng cách trong ô */
-        background: #f7f7f7; /* Nền xám nhạt */
-        border-bottom: 2px solid #ddd; /* Viền dưới tách header */
+        text-align: left;
+        padding: 14px;
+        background: #f7f7f7;
+        border-bottom: 2px solid #ddd;
     }
 
     /* Ô trong bảng */
     .order-table td {
-        padding: 14px; /* Khoảng cách trong ô */
-        border-bottom: 1px solid #e5e5e5; /* Viền ngăn các dòng */
-        font-size: 15px; /* Kích thước chữ */
+        padding: 14px;
+        border-bottom: 1px solid #e5e5e5;
+        font-size: 15px;
     }
 
 /* Mã hóa đơn */
 .col-id {
-    font-weight: 600; /* Chữ đậm để nổi bật mã */
+    font-weight: 600;
+}
+
+/* Mã hóa đơn, Số lượng sản phẩm và tên sản phẩm */
+.col-id,
+.col-nameproduct,
+.col-qty {
+    font-weight: 600;
 }
 
 /* Số lượng sản phẩm */
 .col-qty {
-    font-weight: 600; /* Làm đậm số lượng */
+    font-weight: 600;
 }
 
 /*  TAG TRẠNG THÁI  */
 
 /* Khung tag chung */
 .tag {
-    padding: 4px 10px; /* Khoảng cách trong */
-    border-radius: 6px; /* Bo góc */
-    font-size: 13px; /* Chữ nhỏ gọn */
-    font-weight: 600; /* Tag đậm hơn */
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 /* Trạng thái: Chưa xác nhận */
 .tag-pending {
-    background: #ffe5e5; /* Nền đỏ nhạt */
-    color: #d64545; /* Chữ đỏ đậm */
+    background: #ffe5e5;
+    color: #d64545;
 }
 
 /* Trạng thái: Đã hủy */
 .tag-cancel {
-    background: #fff1d6; /* Nền cam nhạt */
-    color: #e19a34; /* Chữ cam đậm */
+    background: #fff1d6;
+    color: #e19a34;
 }
 
 /* Trạng thái: Đã xác nhận */
 .tag-done {
-    background: #e5ffe9; /* Nền xanh nhạt */
-    color: #2a9d47; /* Chữ xanh đậm */
+    background: #e5ffe9;
+    color: #2a9d47;
 }
 
 /*  NÚT CHI TIẾT  */
 .btn-detail {
-    color: #007bff; /* Màu chữ xanh */
-    text-decoration: none; /* Bỏ gạch dưới */
-    font-weight: 600; /* Chữ đậm nhẹ */
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
 }
 
     .btn-detail:hover {
-        text-decoration: underline; /* Khi hover sẽ có gạch dưới */
+        text-decoration: underline;
     }
 
 .cart-button {
     display: flex;
-    justify-content: flex-end; /* Đẩy nút sang bên phải của container */
+    justify-content: flex-end;
     margin-top: 20px;
 }
 
@@ -110,3 +116,29 @@
     .btn-cart:hover {
         background-color: #e65c00;
     }
+
+/* Responsive cho màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+    .order-page {
+        margin: 15px;
+        max-width: 100%;
+    }
+
+    .order-title {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .order-table-box {
+        overflow-x: auto; /* Cho phép cuộn ngang */
+    }
+
+    .order-table {
+        min-width: 600px; /* Đảm bảo bảng đủ rộng để cuộn */
+    }
+
+    .btn-cart {
+        width: 100%; /* Nút giỏ hàng full chiều ngang */
+        text-align: center;
+    }
+}

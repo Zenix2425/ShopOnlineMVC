@@ -15,7 +15,10 @@
                 <div class="col-md-4">
                     @if (!string.IsNullOrEmpty(Model.ImagePro))
                     {
-                        <img src="~/pictures/@Model.ImagePro" alt="@Model.NamePro" class="img-thumbnail" style="width: 100%;" />
+
+                        <img src="@Url.Content("~/pictures/tshirt/" + @Model.ImagePro)"
+                             alt="@Model.NamePro"
+                             style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px;" />
                     }
                     else
                     {
@@ -30,19 +33,22 @@
                                 @if (!string.IsNullOrEmpty(Model.ImageThumb1))
                                 {
                                     <div class="col-xs-4">
-                                        <img src="~/pictures/@Model.ImageThumb1" alt="Thumb 1" class="img-thumbnail" style="width: 100%;" />
+                                        <img src="@Url.Content("~/pictures/tshirt/" + Model.ImageThumb1)"
+                                             alt="Thumb 1" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px;" />
                                     </div>
                                 }
                                 @if (!string.IsNullOrEmpty(Model.ImageThumb2))
                                 {
                                     <div class="col-xs-4">
-                                        <img src="~/pictures/@Model.ImageThumb2" alt="Thumb 2" class="img-thumbnail" style="width: 100%;" />
+                                        <img src="@Url.Content("~/pictures/tshirt/" + Model.ImageThumb2)"
+                                             alt="Thumb 2" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px;" />
                                     </div>
                                 }
                                 @if (!string.IsNullOrEmpty(Model.ImageThumb3))
                                 {
                                     <div class="col-xs-4">
-                                        <img src="~/pictures/@Model.ImageThumb3" alt="Thumb 3" class="img-thumbnail" style="width: 100%;" />
+                                        <img src="@Url.Content("~/pictures/tshirt/" + Model.ImageThumb3)"
+                                             alt="Thumb 3" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover; border-radius: 4px;" />
                                     </div>
                                 }
                             </div>
